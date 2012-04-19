@@ -14,7 +14,7 @@ Welcome.booksController = Ember.ArrayController.create({
 	content: [],
 	loadBooks: function(){
 		var self = this;
-		$.get('data/books.json', function(data) {
+		$.getJSON('data/books.json', function(data) {
 			data.forEach(function(item){
 				self.pushObject(Welcome.Book.create(item));
 			});
