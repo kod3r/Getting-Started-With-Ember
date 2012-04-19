@@ -4,18 +4,20 @@ Welcome = Ember.Application.create({
 	}
 });
 
-Welcome.Books = Ember.Object.extend({
+Welcome.Book = Ember.Object.extend({
 	title: '',
 	author: '',
 	genre: ''
 });
 
-Welcome.bookController = Ember.ArrayController.create({
+Welcome.booksController = Ember.ArrayController.create({
 	content: [],
 	loadBooks: function(){
+		var self = this;
 		$.get('data/books.json', function(data) {
-			Welcome.bookController.pushObjects(data);
-			// console.log(data);
+			data.forEach(function(item){
+				self.pushObject(Welcome.Book.create(item));
+			});
 		});
 	}
 });
